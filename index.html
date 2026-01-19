@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sir Khoza LOve💖 Scrumptious Abbie</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(rgba(194, 183, 188, 0.55), rgba(107, 107, 107, 0.55)),
+                url(scruuu.jpeg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* BACKGROUND IMAGE LAYER (HIDDEN INITIALLY) */
+#photo-bg {
+    position: fixed;
+    inset: 0;
+    background:
+       linear-gradient(rgba(194, 183, 188, 0.55), rgba(107, 107, 107, 0.55)),
+        url("victor-kylie.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    display: none;
+}
+
+/* Floating Hearts */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    color: rgba(255,255,255,0.75);
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+}
+
+/* Card */
+.card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(14px);
+    padding: 42px;
+    border-radius: 28px;
+    text-align: center;
+    color: #fff;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+    z-index: 5;
+    animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.05rem;
+    margin-bottom: 32px;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+button {
+    padding: 13px 32px;
+    border-radius: 30px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#yes {
+    background: #ffffff;
+    color: #c9184a;
+    font-weight: 600;
+}
+
+#yes:hover {
+    transform: scale(1.12);
+}
+
+#no {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+/* Success */
+#success {
+    display: none;
+}
+
+/* Date */
+#date {
+    position: fixed;
+    bottom: 22px;
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    z-index: 6;
+    display: none;
+}
+
+.signature {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND IMAGE -->
+<div id="photo-bg"></div>
+
+<div class="card" id="proposal">
+    <h1>Scrumptious Abbie 💕</h1>
+    <p> From the first moment I met you, my world has been brighter.
+Your laughter, your kindness, your heart everything about you makes me fall deeper in love.
+So today, I have only one question:<br><br>
+Will you be my Valentine, and make me the happiest person alive?
+    </p>
+
+    <div class="buttons">
+        <button id="yes">Yes 💖</button>
+        <button id="no">No 🙈</button>
+    </div>
+
+    <div class="signature">— Sir Khoza</div>
+</div>
+
+<div class="card" id="success">
+    <h1>She Said YES 💘</h1>
+    <p>
+        Kaylie, you are my heart, my peace, and my forever.<br><br>
+        I love you endlessly ❤️
+    </p>
+
+    <div class="signature">
+        Forever yours,<br>Sir Khoza
+    </div>
+</div>
+
+<div id="date">30 June 2022 – FOREVER</div>
+
+<script>
+/* Floating hearts */
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = Math.random() * 22 + 16 + 'px';
+    heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 280);
+
+const yesBtn = document.getElementById('yes');
+const noBtn = document.getElementById('no');
+
+yesBtn.addEventListener('click', () => {
+    document.getElementById('proposal').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+
+    document.getElementById('photo-bg').style.display = 'block';
+    document.getElementById('date').style.display = 'block';
+});
+
+// Function to move the "No" button randomly
+function moveNoButton() {
+    const x = Math.random() * 220 - 110; // -110px to +110px
+    const y = Math.random() * 220 - 110;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+// Function to enlarge the "Yes" button
+function enlargeYesButton() {
+    // Temporarily increase the size
+    yesBtn.style.transform = 'scale(1.3)';
+    // Revert the size after 200ms for a quick pulse effect
+    setTimeout(() => {
+        yesBtn.style.transform = 'scale(1)';
+    }, 200);
+}
+
+// Event listeners for the "No" button
+// For desktop (mouse)
+noBtn.addEventListener('mouseover', moveNoButton);
+// For mobile devices (touch)
+noBtn.addEventListener('touchstart', function(event) {
+    event.preventDefault(); // Prevents immediate click/mouse event conflicts
+    moveNoButton();
+    enlargeYesButton(); // Also enlarges "Yes" on mobile tap
+});
+
+// Optional: Keep the hover effect for desktop by also enlarging "Yes"
+noBtn.addEventListener('mouseover', enlargeYesButton);
+</script>
+
+</body>
+</html>
